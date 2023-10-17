@@ -1,3 +1,8 @@
+/*
+ 
+    Original Problem at https://adventofcode.com/2022/day/1
+
+ */
 const fs = require("fs");
 
 let sampleInput = "";
