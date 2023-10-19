@@ -41,12 +41,12 @@ const findCommonCharacterAmongThree = (strings) =>
     (char) => strings[1].includes(char) && strings[2].includes(char)
   );
 
-function chunkInThrees(inputString, delimiter = "\n") {
+const chunkInThrees = (inputString) => {
   return Array.from(
-    { length: Math.ceil(inputString.split(delimiter).length / 3) },
-    (_, i) => inputString.split(delimiter).slice(i * 3, i * 3 + 3)
+    { length: Math.ceil(inputString.split("\n").length / 3) },
+    (_, i) => inputString.split("\n").slice(i * 3, i * 3 + 3)
   );
-}
+};
 const totalPriority = chunkInThrees(allRucksacksData)
   .map(findCommonCharacterAmongThree)
   .map(getItemTypePriority)
