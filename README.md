@@ -35,10 +35,6 @@ To run the solutions:
 
 While these solutions are primarily for my personal use, if you have suggestions, improvements, or corrections, feel free to raise an issue or submit a pull request.
 
-## License
-
-[MIT License](LICENSE)
-
 ## Credits
 
 All challenges are sourced from [Advent of Code](https://adventofcode.com/). Kudos to them for creating these engaging problems year after year.
