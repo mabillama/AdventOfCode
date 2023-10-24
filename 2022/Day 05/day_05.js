@@ -62,26 +62,66 @@ const stacksInput = `
 
 // Parse the stacks from the initial configuration
 
-const input = `    [P]                 [C] [C]    
-    [W]         [B]     [G] [V] [V]
-    [V]         [T] [Z] [J] [T] [S]
-    [D] [L]     [Q] [F] [Z] [W] [R]
-    [C] [N] [R] [H] [L] [Q] [F] [G]
-[F] [M] [Z] [H] [G] [W] [L] [R] [H]
-[R] [H] [M] [C] [P] [C] [V] [N] [W]
-[W] [T] [P] [J] [C] [G] [W] [P] [J]
-1   2   3   4   5   6   7   8   9 `;
+// const input = `    [P]                 [C] [C]
+//     [W]         [B]     [G] [V] [V]
+//     [V]         [T] [Z] [J] [T] [S]
+//     [D] [L]     [Q] [F] [Z] [W] [R]
+//     [C] [N] [R] [H] [L] [Q] [F] [G]
+// [F] [M] [Z] [H] [G] [W] [L] [R] [H]
+// [R] [H] [M] [C] [P] [C] [V] [N] [W]
+// [W] [T] [P] [J] [C] [G] [W] [P] [J]
+// 1   2   3   4   5   6   7   8   9 `;
 
-function transformInput(input) {
-  const lines = input.split("\n");
-  let newStack = [];
-  // console.log(lines);
-  for (let i = 0; i < lines.length; i++) {
-    const spaceLine = " " + lines[i];
-    console.log(
-      spaceLine.replaceAll("    ", " [-]").split(" ").filter(Boolean)
-    );
-  }
+// function transformInput(input) {
+//   const lines = input.split("\n");
+//   let newStack = [];
+//   // console.log(lines);
+//   for (let i = lines.length - 1; i >= 0; i--) {
+//     const spaceLine = " " + lines[i];
+//     const newSpaceLine = spaceLine
+//       .replaceAll("    ", " [-]")
+//       .split(" ")
+//       .filter(Boolean);
+//     console.log(newSpaceLine);
+
+//     const innerStack = [];
+//     for (let j = 0; j < newSpaceLine.length; j++) {
+//       if (newSpaceLine[j] != "[-]") {
+//         // innerStack[j].push(newSpaceLine[j]);
+//         // newStack[0][j].push(newSpaceLine[j]);
+//         console.log(newStack[0]);
+//       }
+//     }
+//     newStack.push(innerStack);
+//   }
+//   console.log(newStack);
+// }
+
+// transformInput(input);
+
+const input = `    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 `;
+
+const lines = input.split("\n").slice(0, -1).reverse();
+
+const stack = [];
+
+for (const line of lines) {
+  const spaceLine = " " + line;
+
+  const newSpaceLine = spaceLine
+    .replaceAll("    ", " [-]")
+    .split(" ")
+    .filter(Boolean);
+  // console.log(newSpaceLine);
+
+  newSpaceLine.forEach((crate, index) => {
+    const letter = crate.substring(1, crate.length - 1);
+    if (!stack[index]) stack[index] = [];
+    if (letter != "-") stack[index].push(letter);
+  });
 }
 
-console.log(transformInput(input));
+console.log(stack);
