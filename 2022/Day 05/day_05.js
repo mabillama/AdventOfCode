@@ -115,7 +115,6 @@ for (const line of lines) {
     .replaceAll("    ", " [-]")
     .split(" ")
     .filter(Boolean);
-  // console.log(newSpaceLine);
 
   newSpaceLine.forEach((crate, index) => {
     const letter = crate.substring(1, crate.length - 1);
