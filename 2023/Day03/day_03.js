@@ -86,3 +86,42 @@ let neighborChains = findNeighborChains(numberChains, symbolsStock);
 let totalSum = sumPartNumbers(neighborChains);
 
 console.log(`PART 1 - Total sum of all part numbers for: ${totalSum}`);
+
+// --- Part Two ---
+
+function sumStarNeighbors(numberChains, symbolsStock) {
+  // Filter to find coordinates of '*' symbols
+  const starCoords = symbolsStock.filter(([line, index]) => {
+    return sample.split(/\r?\n/)[line][index] === "*";
+  });
+
+  let totalSum = 0;
+
+  // Iterate over each '*' symbol
+  starCoords.forEach(([starY, starX]) => {
+    let foundChains = [];
+
+    // Check each number chain for being a neighbor
+    numberChains.forEach(([chainY, start, end, value]) => {
+      if (
+        (chainY === starY && (starX === start - 1 || starX === end + 1)) ||
+        (chainY === starY - 1 && starX >= start - 1 && starX <= end + 1) ||
+        (chainY === starY + 1 && starX >= start - 1 && starX <= end + 1)
+      ) {
+        foundChains.push(value);
+      }
+    });
+
+    // If two distinct chains are found, multiply their values and add to the total sum
+    if (foundChains.length >= 2) {
+      totalSum += foundChains[0] * foundChains[1];
+    }
+  });
+
+  return totalSum;
+}
+
+let totalStarNeighborProductSum = sumStarNeighbors(numberChains, symbolsStock);
+console.log(
+  `PART 2 - Total sum of products of number chains neighboring '*': ${totalStarNeighborProductSum}`
+);
